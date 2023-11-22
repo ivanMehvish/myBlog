@@ -1,30 +1,11 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Django Girls blog</title>
-    </head>
-    <body>
-        <header>
-            <h1><a href="/">Django Girls Blog</a></h1>
-        </header>
+{% extends 'myblog/base.html'%}
+            
+       {%block content%}
          {% for post in posts %}
             <article>
-                <time>{{post.published_date}}</time><br>
-                <h1>{{post.title}}</h1><br>
-                <h3>{{post.author}}</h3>
-                <p>{{post.text}}</p>
+                <h1><a href={% url 'post_detail' pk=post.pk %}>{{post.title}}</a></h1><br>
+                <time>published:{{post.published_date}}</time><br> 
+                <h3>written by:{{post.author}}</h3>
             </article>
          {% endfor %}
-        <article>
-            <time>published: 14.06.2014, 12:14</time>
-            <h2><a href="">My first post</a></h2>
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        </article>
-
-        <article>
-            <time>published: 14.06.2014, 12:14</time>
-            <h2><a href="">My second post</a></h2>
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
-        </article>
-    </body>
-</html>
+      {% endblock %}
