@@ -1,11 +1,35 @@
 {% extends 'myblog/base.html'%}
             
        {%block content%}
+       <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1 gap-5">
          {% for post in posts %}
-            <article>
-                <h1><a href={% url 'post_detail' pk=post.pk %}>{{post.title}}</a></h1><br>
+          {% comment %} <div class="container">
+            <article class="border-4 border-sky-500 m-0.5">
+                <h1 class="hover:font-serif"><a href={% url 'post_detail' pk=post.pk %}>{{post.title}}</a></h1>
                 <time>published:{{post.published_date}}</time><br> 
                 <h3>written by:{{post.author}}</h3>
             </article>
+         </div>  {% endcomment %}
+         <div class=" w-full lg:max-w-full lg:flex">
+            <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('/mountain.jpg')" title="Mountain">
+            </div>
+            <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+              <div class="mb-8">
+                    <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
+                  </svg>
+                </p>
+                <div class="text-gray-900 font-bold text-xl mb-2"><div class="hover:font-serif"><a href={% url 'post_detail' pk=post.pk %}>{{post.title}}</a></div></div>
+                <p class="text-gray-700 text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, Nonea! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
+              </div>
+              <div class="flex items-center">
+                <div class="text-sm">
+                  <p class="text-gray-900 leading-none">{{post.author}}</p>
+                  <p class="text-gray-600">{{post.published_date}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
          {% endfor %}
+         </div>
       {% endblock %}
