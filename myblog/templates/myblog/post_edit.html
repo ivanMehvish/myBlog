@@ -1,9 +1,69 @@
 {% extends 'myblog/base.html' %}
 
 {% block content %}
-    <h2>New post</h2>
+    <style>
+        .post-form {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        .post-form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .post-form input, .post-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .post-form button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .post-form button:hover {
+            background-color: #0056b3;
+        }
+<style>
+    @media (max-width: 320px) {
+        .post-form {
+            max-width: 100%;
+            padding: 10px;
+        }
+        .post-form label {
+            font-size: 14px;
+        }
+        .post-form input, .post-form textarea {
+            padding: 8px;
+            margin-bottom: 15px;
+        }
+        .post-form button {
+            padding: 8px 16px;
+        }
+    }
+</style>
+        
+    </style>
+ <div class="text-center">
+    <h2 class="font-black">New post</h2>
+    <div>
     <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
+        <label for={{form.title.id_for_label}}>TITLE</label>
+        {{form.title}}
+        <br>
+        <label for={{form.text.id_for_label}} class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Your Text</label>
+        {{form.text}}
         <button type="submit" class="save btn btn-secondary">Save</button>
     </form>
+  </div>
+</div>
 {% endblock %}

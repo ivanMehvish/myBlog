@@ -6,11 +6,22 @@
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body class="bg-yellow-400 font-sans">
-        <header class="bg-yellow-100 hover:font-serif">
+        <header class="bg-yellow-100 font-serif">
             <h1><a href="/">MyBlog</a></h1>
-            <a href="{% url 'post_new' %}" class="top-menu">
-                {% include './icons/file-earmark-plus.svg' %}
-            </a>
+            <nav>
+                {% if user.is_authenticated %}
+                    <div class="flex items-center space-x-4">
+                        <a href="{% url 'post_new' %}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">New Post</a>
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit">logout</button>
+                        </form>
+                    </div>
+                {% else %}
+                    <a href="{% url 'login' %}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Login</a>
+                {% endif %}
+            </nav>
+ 
         </header>
         {% block content %}
         
@@ -19,3 +30,4 @@
 
     </body>
 </html>
+
