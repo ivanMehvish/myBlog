@@ -43,7 +43,7 @@ def signup(request):
             user.save()
             messages.success(request, 'You have singed up successfully.')
             login(request, user)
-            return redirect('')
+            return redirect('post_list')
         else:
             return render(request, 'myblog/register.html', {'form': form})
 
