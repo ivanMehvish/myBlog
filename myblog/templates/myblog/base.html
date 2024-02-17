@@ -1,4 +1,4 @@
-{% load static %}
+{% comment %} {% load static %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,4 +30,36 @@
 
     </body>
 </html>
-
+ {% endcomment %}
+ {% load static %}
+ <!DOCTYPE html>
+ <html>
+     <head>
+         <title>MyBlog</title>
+         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+     </head>
+     <body class="bg-yellow-400 font-sans">
+         <header class="bg-yellow-100 font-serif text-center py-4">
+             <h1 class="text-4xl mb-4"><a href="/">MyBlog</a></h1>
+             <nav>
+                 {% if user.is_authenticated %}
+                     <div class="flex justify-center items-center space-x-4">
+                         <a href="{% url 'post_new' %}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">New Post</a>
+                         <form method="post" action="{% url 'logout' %}">
+                             {% csrf_token %}
+                             <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md">Logout</button>
+                         </form>
+                     </div>
+                 {% else %}
+                 <a href="{% url 'register' %}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">REGISTER</a>
+                     <div class="flex justify-center">
+                         <a href="{% url 'login' %}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Login</a>
+                     </div>
+                 {% endif %}
+             </nav>
+         </header>
+         {% block content %}
+         
+         {% endblock %}
+     </body>
+ </html>
