@@ -51,8 +51,9 @@
                          </form>
                      </div>
                  {% else %}
-                 <a href="{% url 'register' %}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">REGISTER</a>
-                     <div class="flex justify-center">
+                 
+                     <div class="flex justify-center space-x-4">
+                        <a href="{% url 'register' %}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Register</a>
                          <a href="{% url 'login' %}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Login</a>
                      </div>
                  {% endif %}

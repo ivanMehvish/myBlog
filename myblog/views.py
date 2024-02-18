@@ -16,6 +16,14 @@ def post_detail(request, pk):
     return render(request, 'myblog/post_detail.html', {'post': post})
 
 @login_required
+def deletePost(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.user==post.author:
+        post.delete()
+        print("Deleted")
+    return redirect('post_list')
+
+@login_required
 def post_new(request):
     if request.method == "POST":
          form = postForm(request.POST)

@@ -2,10 +2,12 @@
 
 {%block content%}
 
+<div class="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+<div class=" p-5 bg-white rounded-md shadow-sm -space-y-px">
 {% if form.errors %}
 <p>Your username and password didn't match. Please try again.</p>
 {% endif %}
-
 <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
         <table>
@@ -18,10 +20,9 @@
             <td>{{ form.password }}</td>
         </tr>
         </table>
-
-        <input type="submit" value="login" />
-        <input type="hidden" name="next" value="{{ next }}" />
+        <button type="submit" class="bg-blue-500 hover:bg-red-600 text-white px-4 py-2 rounded-md">Login</button>
     </form>
-
-
+</div>
+</div>
+</div>
 {% endblock %}

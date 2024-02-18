@@ -1,13 +1,16 @@
 {% extends 'myblog/base.html' %}
 
 {% block content %}
-    <article class="post">
-        {% if post.published_date %}
-            <time class="date">
-                {{ post.published_date }}
-            </time>
-        {% endif %}
-        <h2>{{ post.title }}</h2>
-        <p>{{ post.text|linebreaksbr }}</p>
-    </article>
+{% if user == post.author %}
+    <a href="{% url 'post_delete' pk=post.pk %}" class="text-indigo-600 hover:text-indigo-900">Delete</a>
+{% endif %}
+<article class="post bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    {% if post.published_date %}
+        <time class="date text-gray-700 text-base">
+            {{ post.published_date }}
+        </time>
+    {% endif %}
+    <h2 class="font-bold text-xl mb-2">{{ post.title }}</h2>
+    <p class="text-gray-700 text-base">{{ post.text|linebreaksbr }}</p>
+</article>
 {% endblock %}
